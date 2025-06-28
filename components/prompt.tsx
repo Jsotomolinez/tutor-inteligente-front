@@ -70,7 +70,7 @@ export default function Prompt(
       <form className="flex flex-col items-center justify-center gap-4 w-3/4" onSubmit={handleSubmit}>
         <Label
           className={`mt-4 flex flex-col items-center justify-center border-2 border-dashed rounded-lg px-6 cursor-pointer hover:border-accent transition-colors py-10 ${fileSize ? "border-accent bg-background/10" : "border-muted"
-            }`}
+          }`}
         >
           {
             fileSize ? (
