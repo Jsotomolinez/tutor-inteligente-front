@@ -14,6 +14,11 @@ export default function Prompt(
   { onResponse }: { onResponse: (response: string) => void } = { onResponse: () => {} }
 ) {
 
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  if (!BACKEND_URL) {
+    throw new Error('BACKEND_URL is not defined in the environment variables');
+  }
+
   const [fileSize, setFileSize] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { setItems } = useAppContext();
@@ -44,7 +49,7 @@ export default function Prompt(
     formData.append('isFunction', functionCheckbox.checked ? 'true' : 'false');
 
     try {
-      const response = await axios.post('http://localhost:8000/gemini/chat/image', formData, {
+      const response = await axios.post(`${BACKEND_URL}/gemini/chat/image`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       onResponse(response.data);
