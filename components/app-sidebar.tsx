@@ -1,7 +1,7 @@
 'use client'
 
 import { Github, Linkedin } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 
 import {
   Sidebar,
@@ -19,7 +19,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "./ui/button"
-import { addToHistory, getHistory, HistoryItem_ } from "@/logic/history"
+import { getHistory } from "@/logic/history"
 import HistoryItem from "./ui/history-item"
 import { useAppContext } from "@/context/history-context"
 
@@ -36,7 +36,9 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <div className="flex items-baseline">
-        <SidebarHeader className="text-white font-bold pl-5 flex">Tutor inteligente</SidebarHeader>
+        <SidebarHeader className="text-white font-bold pl-5 flex">
+          Tutor inteligente
+          </SidebarHeader>
         <span className="text-muted text-xs">(beta)</span>
       </div>
       <SidebarContent>
