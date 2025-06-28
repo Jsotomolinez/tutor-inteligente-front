@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
 import Chat from "../components/chat";
-import { getItemFromHistory } from "@/logic/history";
 import { useSearchParams } from "next/navigation";
 
 

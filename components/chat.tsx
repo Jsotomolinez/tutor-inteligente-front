@@ -6,7 +6,6 @@ import { Button } from "./ui/button";
 import { CirclePlus, Copy } from "lucide-react";
 import { toast } from "sonner";
 import { getItemFromHistory } from "@/logic/history";
-import { useAppContext } from "@/context/history-context";
 
 interface ChatProps {
   index?: number | null;
