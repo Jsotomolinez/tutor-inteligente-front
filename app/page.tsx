@@ -1,4 +1,4 @@
-'use client';
+'use client'; 
 import { useEffect, useState } from "react";
 import Chat from "../components/chat";
 import { useSearchParams } from "next/navigation";
