@@ -11,7 +11,7 @@ import { useAppContext } from '@/context/history-context';
 
 
 export default function Prompt(
-  { onResponse }: { onResponse: (response: string) => void } = { onResponse: () => {} }
+  { onResponse }: { onResponse: (response: string) => void } = { onResponse: () => { } }
 ) {
 
   const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -60,7 +60,7 @@ export default function Prompt(
       onResponse('Error al obtener la respuesta del backend. Por favor, inténtalo de nuevo más tarde.');
     }
   }
-    
+
 
 
   return (
@@ -68,56 +68,55 @@ export default function Prompt(
       <h2 className="font-bold">Ingresa un enunciado como imagen o pdf para ayudarte a resolverlo</h2>
 
       <form className="flex flex-col items-center justify-center gap-4 w-3/4" onSubmit={handleSubmit}>
-      <Label
-        className={`mt-4 flex flex-col items-center justify-center border-2 border-dashed rounded-lg px-6 cursor-pointer hover:border-accent transition-colors py-10 ${
-          fileSize ? "border-accent bg-background/10" : "border-muted"
-        }`}
-      >
-        {
-          fileSize ? (
-        <div className="flex items-center justify-center gap-2">
-          <File className="text-2xl text-foreground" />
-          <span className="text-sm text-foreground">Tamaño del archivo: {(fileSize / 1024).toFixed(2)} KB</span>
-        </div>
-          ) : (
-        <>
-          <span className="mb-2 text-muted pb-3">Arrastra un archivo aquí o haz clic para seleccionar</span>
-          <Upload className="text-muted"/>
-        </>
-          )
-        }
-        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-          {({getRootProps, getInputProps}) => (
-        <section>
-          <div {...getRootProps()}>
-            <input {...getInputProps()} onChange={(e) => handleFileChange(e)} />
-          </div>
-        </section>
-          )}
-        </Dropzone>
-      </Label>
-
-      <div className="flex items-center justify-between px-3 w-full">
-        <div className="flex flex-col gap-2">
-            <div className="flex items-center space-x-2 gap-2">
-            <Checkbox id="archivos_de_texto" className="data-[state=checked]:bg-accent data-[state=checked]:border-accent" />
-            <Label htmlFor="archivos_de_texto">Trabaja con archivos de texto</Label>
-            </div>
-          <div className="flex items-center space-x-2 gap-2">
-            <Checkbox id="funciones" className="data-[state=checked]:bg-accent data-[state=checked]:border-accent"/>
-            <Label htmlFor="funciones">Definir funciones (parcial 3)</Label>
-          </div>
-          
-        </div>
+        <Label
+          className={`mt-4 flex flex-col items-center justify-center border-2 border-dashed rounded-lg px-6 cursor-pointer hover:border-accent transition-colors py-10 ${fileSize ? "border-accent bg-background/10" : "border-muted"
+            }`}
+        >
           {
             fileSize ? (
-                <button
+              <div className="flex items-center justify-center gap-2">
+                <File className="text-2xl text-foreground" />
+                <span className="text-sm text-foreground">Tamaño del archivo: {(fileSize / 1024).toFixed(2)} KB</span>
+              </div>
+            ) : (
+              <>
+                <span className="mb-2 text-muted pb-3">Arrastra un archivo aquí o haz clic para seleccionar</span>
+                <Upload className="text-muted" />
+              </>
+            )
+          }
+          <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} onChange={(e) => handleFileChange(e)} />
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        </Label>
+
+        <div className="flex items-center justify-between px-3 w-full">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center space-x-2 gap-2">
+              <Checkbox id="archivos_de_texto" className="data-[state=checked]:bg-accent data-[state=checked]:border-accent" />
+              <Label htmlFor="archivos_de_texto">Trabaja con archivos de texto</Label>
+            </div>
+            <div className="flex items-center space-x-2 gap-2">
+              <Checkbox id="funciones" className="data-[state=checked]:bg-accent data-[state=checked]:border-accent" />
+              <Label htmlFor="funciones">Definir funciones (parcial 3)</Label>
+            </div>
+
+          </div>
+          {
+            fileSize ? (
+              <button
                 type="submit"
                 className="flex items-center justify-center rounded-full text-white text-2xl p-2 w-12 h-12 cursor-pointer bg-accent hover:bg-accent/80 transition-colors disabled:opacity-50"
                 disabled={isSubmitting}
-                >
-                <SendHorizontal className="text-2xl"/>
-                </button>
+              >
+                <SendHorizontal className="text-2xl" />
+              </button>
             ) : (
               <div className="flex items-center justify-center text-muted p-2 w-12 h-12 cursor-pointer">
                 <SendHorizontal />

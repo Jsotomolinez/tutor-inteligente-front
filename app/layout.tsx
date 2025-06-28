@@ -35,7 +35,7 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <SidebarTrigger />
-              {children}
+            {children}
             <Toaster duration={2500}/>
           </SidebarProvider>
         </AppProvider>
