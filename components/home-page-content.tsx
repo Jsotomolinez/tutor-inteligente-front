@@ -15,7 +15,7 @@ function HomePageContent() {
   }, [searchParams]);
 
   return (
-    <section className="flex min-h-screen flex-col items-center justify-between p-10 bg-gradient-to-b from-background to-secondary w-full">
+    <section className="flex min-h-screen flex-col items-center justify-between md:p-10 bg-gradient-to-b from-background to-secondary w-full pt-5">
       <Chat index={index} />
     </section>
   );

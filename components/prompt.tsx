@@ -52,6 +52,12 @@ export default function Prompt(
       const response = await axios.post(`${BACKEND_URL}/gemini/chat/image`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+
+      // Suponiendo que el backend retorna { error: "mensaje" } en caso de error
+      if (response.data && response.data.error) {
+        throw new Error(response.data.error);
+      }
+
       onResponse(response.data);
       addToHistory(response.data);
       setItems(getHistory());
@@ -64,10 +70,10 @@ export default function Prompt(
 
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <div className="flex flex-col items-center text-center justify-center gap-5">
       <h2 className="font-bold">Ingresa un enunciado como imagen o pdf para ayudarte a resolverlo</h2>
 
-      <form className="flex flex-col items-center justify-center gap-4 w-3/4" onSubmit={handleSubmit}>
+      <form className="flex flex-col items-center justify-center gap-4 w-11/12 md:w-3/4" onSubmit={handleSubmit}>
         <Label
           className={`mt-4 flex flex-col items-center justify-center border-2 border-dashed rounded-lg px-6 cursor-pointer hover:border-accent transition-colors py-10 ${fileSize ? "border-accent bg-background/10" : "border-muted"
           }`}
@@ -96,7 +102,7 @@ export default function Prompt(
           </Dropzone>
         </Label>
 
-        <div className="flex items-center justify-between px-3 w-full">
+        <div className="flex items-center justify-between md:px-3 w-full">
           <div className="flex flex-col gap-2">
             <div className="flex items-center space-x-2 gap-2">
               <Checkbox id="archivos_de_texto" className="data-[state=checked]:bg-accent data-[state=checked]:border-accent" />
@@ -112,13 +118,13 @@ export default function Prompt(
             fileSize ? (
               <button
                 type="submit"
-                className="flex items-center justify-center rounded-full text-white text-2xl p-2 w-12 h-12 cursor-pointer bg-accent hover:bg-accent/80 transition-colors disabled:opacity-50"
+                className="flex items-center justify-center rounded-full text-white text-2xl px-3 w-12 h-12 cursor-pointer bg-accent hover:bg-accent/80 transition-colors disabled:opacity-50"
                 disabled={isSubmitting}
               >
                 <SendHorizontal className="text-2xl" />
               </button>
             ) : (
-              <div className="flex items-center justify-center text-muted p-2 w-12 h-12 cursor-pointer">
+              <div className="flex items-center justify-center text-muted px-3 w-12 h-12">
                 <SendHorizontal />
               </div>
             )

@@ -31,7 +31,7 @@ export default function Chat({ index = null }: ChatProps) {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center bg-primary p-4 w-10/12 rounded-xl border-4 border-foreground">
+    <section className="flex flex-col items-center justify-center bg-primary p-2 md:p-4 w-10/12 rounded-xl border-4 border-foreground">
       {!response ? (
         <Prompt onResponse={setResponse}/>
       ) : (
