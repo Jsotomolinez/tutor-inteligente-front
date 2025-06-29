@@ -55,15 +55,15 @@ export default function Prompt(
 
       // Suponiendo que el backend retorna { error: "mensaje" } en caso de error
       if (response.data && response.data.error) {
-        onResponse('Error al obtener la respuesta del backend. Por favor, inténtalo de nuevo más tarde.');
         throw new Error(response.data.error);
-      } else {
-        onResponse(response.data);
-        addToHistory(response.data);
-        setItems(getHistory());
       }
+
+      onResponse(response.data);
+      addToHistory(response.data);
+      setItems(getHistory());
     } catch (error) {
       console.error('Error fetching from backend:', error);
+      onResponse('Error al obtener la respuesta del backend. Por favor, inténtalo de nuevo más tarde.');
     }
   }
 
