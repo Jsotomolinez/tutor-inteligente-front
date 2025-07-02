@@ -66,7 +66,7 @@ export function AppSidebar() {
         <div className="flex flex-col items-center justify-between px-5 py-2 gap-2">
           <span className="text-xs text-muted">Desarrollado por Jesús Soto</span>
           <span className="text-xs text-muted">Contacto: <br />jsotomolinez12@gmail.com</span>
-          <div className="flex flex-col items-center md:flex-row px-2">
+          <div className="flex items-center px-2">
             <Link href="https://www.linkedin.com/in/jesus-alejandro-soto-molinez-0909b5345" target="blank" className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}>
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>

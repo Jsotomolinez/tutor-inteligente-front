@@ -26,7 +26,11 @@ export default function Chat({ index = null }: ChatProps) {
   }, [index]);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(response?.replace(/<br\s*\/?>/gi, "\n") || "")
+    navigator.clipboard.writeText(
+      response
+      ?.replace(/(<br\s*\/?>){3}/gi, "\n\n\n")
+      .replace(/<br\s*\/?>/gi, "\n\n\n") || ""
+    )
     toast.success("Respuesta copiada al portapapeles")
   }
 
@@ -39,7 +43,10 @@ export default function Chat({ index = null }: ChatProps) {
           <div className="flex justify-end items-center gap-2">
             <Button
               className="ml-auto text-white rounded bg-foreground/10 hover:bg-foreground/20 transition-colors"
-              onClick={() => setResponse(null)}
+              onClick={() => {
+                setResponse(null);
+                window.location.href = "/";
+              }}
               type="button"
             >
               <CirclePlus size={32} />

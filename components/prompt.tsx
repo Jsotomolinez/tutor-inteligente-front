@@ -71,7 +71,7 @@ export default function Prompt(
 
   return (
     <div className="flex flex-col items-center text-center justify-center gap-5">
-      <h2 className="font-bold">Ingresa un enunciado como imagen o pdf para ayudarte a resolverlo</h2>
+      <h2 className="font-bold">Ingresa un enunciado de programación en forma de imagen o pdf para ayudarte a resolverlo</h2>
 
       <form className="flex flex-col items-center justify-center gap-4 w-11/12 md:w-3/4" onSubmit={handleSubmit}>
         <Label

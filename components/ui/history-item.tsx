@@ -45,6 +45,9 @@ export default function HistoryItem(
               onClick={() => {
                 deleteFromHistory(index)
                 setItems(getHistory());
+                if (index === Number(window.location.search.split('index=')[1])) {
+                  window.location.href = '/';
+                }
               }}
               className="text-red-500 font-bold hover:text-red-600 transition-colors duration-300"
             ><Trash2 /> Eliminar</AlertDialogAction>

@@ -64,9 +64,10 @@ export function deleteFromHistory(index: number) {
 
 // Funcion que toma un string y lo convierte en un objeto HistoryItem donde tittle es la primera linea y body es el texto completo, incluyendo la primera linea
 export function stringToHistoryItem(text: string): HistoryItem_ {
-  const lines = text.split("<br />");
+  const body = text
+  const lines = text.split("<br /><br /><br />");
   const title = lines[0] || "Sin título";
-  const body = lines.join("\n").trim();
+  
 
   return {
     title,
